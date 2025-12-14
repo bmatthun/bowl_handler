@@ -33,7 +33,7 @@ public class Customer {
             CascadeType.MERGE
     })
     @JoinColumn(name = "customer_id")
-    private List<Order> orders;
+    private List<OrderItem> orderItems;
 
     @Column(name = "Megjegyzés")
     private String note;

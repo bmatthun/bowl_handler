@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enums.UnitTypes;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,5 +19,6 @@ public class Ingredient {
     private Integer quantity;
 
     @Column(name = "Mértékegység")
-    private String unit;
+    @Enumerated(EnumType.STRING)
+    private UnitTypes unit;
 }

@@ -27,18 +27,13 @@ public class Order {
 
     @OneToMany(
             mappedBy = "order",
-            fetch = FetchType.LAZY,
-            cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    private List<Bowl> bowls;
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrderItem> orderItems;
 
-    @Column(name = "Mennyiség")
+    @Column(name = "darab")
     private String quantity;
-
-    @Column(name = "Mértékegység")
-    private String unit = "db";
 
     @Column(name = "Teljes ár")
     private Integer price; //ennek a Bowl x unit -ból kellene jönnie, de lehetséges módosítani
@@ -46,6 +41,6 @@ public class Order {
     @PrePersist
     @PreUpdate
     public void calculateTotalPrice() {
-        this.price = this.bowls.stream().mapToInt(Bowl::getPrice).sum();
+        this.price = this.orderItems.stream().mapToInt(OrderItem::getLineTotal).sum();
     }
 }

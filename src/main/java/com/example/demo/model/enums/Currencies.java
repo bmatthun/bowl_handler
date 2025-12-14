@@ -1,6 +1,6 @@
 package com.example.demo.model.enums;
 
-public enum Currency {
+public enum Currencies {
     HUF,
     EUR;
 }
