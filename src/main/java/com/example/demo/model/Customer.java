@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "Megrendelők")
+@Table(name = "Vendégek")
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +32,7 @@ public class Customer {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinColumn(name = "customer_id")
-    private List<OrderItem> orderItems;
+    private List<Order> orders;
 
     @Column(name = "Megjegyzés")
     private String note;

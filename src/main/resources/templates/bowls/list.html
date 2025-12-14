@@ -7,7 +7,9 @@
 <body>
 <h1>Tálaim</h1>
 
-<a th:href="@{/bowls/new}" class="btn btn-primary">Új Tál</a>
+<a th:href="@{/bowls/new}" class="icon-btn" aria-label="Új Tál">
+    <img src="/css/img.svg" alt="Új Tál" width="24" height="24">
+</a>
 
 <table>
     <thead>
@@ -15,6 +17,7 @@
         <th>Név</th>
         <th>Mennyiség</th>
         <th>Egység</th>
+        <th>Összetevők</th>
         <th>Műveletek</th>
     </tr>
     </thead>
