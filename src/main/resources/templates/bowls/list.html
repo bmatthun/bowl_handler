@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bowl Handler</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Tálaim</h1>
+
+<a th:href="@{/bowls/new}" class="btn btn-primary">Új Tál</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Név</th>
+        <th>Mennyiség</th>
+        <th>Egység</th>
+        <th>Műveletek</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="bowl : ${bowls}">
+        <td th:text="${bowl.name}">Bowl neve</td>
+        <td th:text="${bowl.quantity}">0</td>
+        <td th:text="${bowl.unit}">db</td>
+        <td>
+            <a th:href="@{/bowls/edit/{id}(id=${bowl.id})}">Szerkesztés</a>
+            <a th:href="@{/bowls/delete/{id}(id=${bowl.id})}"
+               onclick="return confirm('Biztosan törölni?')">Törlés</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:if="${bowls.empty}">
+    <p>Még nincsenek tálaink. <a th:href="@{/bowls/new}">Hozz létre egyet!</a></p>
+</div>
+</body>
+</html>

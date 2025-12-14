@@ -12,6 +12,7 @@ public class Bowl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "Tál típusa")
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
@@ -21,8 +22,10 @@ public class Bowl {
     @JoinTable(name = "bowl_ingredient",
     joinColumns = @JoinColumn(name = "bowl_id"),
     inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    @Column(name = "Összetevők")
     private List<Ingredient> ingredients;
 
     private Integer quantity;
-    private String unit;
+    @Column(name = "Mértékegység")
+    private String unit = "db";
 }

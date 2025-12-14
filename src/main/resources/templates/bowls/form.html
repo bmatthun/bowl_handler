@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tál szerkesztése</title>
+</head>
+<body>
+<h1 th:text="${bowl.id != null ? 'Tál szerkesztése' : 'Új tál'}">Tál</h1>
+
+<form th:action="@{/bowls}" th:object="${bowl}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div>
+        <label for="name">Név:</label>
+        <input type="text" th:field="*{name}" required>
+    </div>
+
+    <div>
+        <label for="quantity">Mennyiség:</label>
+        <input type="number" th:field="*{quantity}">
+    </div>
+
+    <div>
+        <label for="unit">Egység:</label>
+        <input type="text" th:field="*{unit}">
+    </div>
+
+    <button type="submit">Mentés</button>
+    <a th:href="@{/}">Mégse</a>
+</form>
+</body>
+</html>
