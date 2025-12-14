@@ -25,13 +25,13 @@ public class Order {
     @Column(name = "Megrendelés_időpontja")
     private LocalTime time;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+    @OneToMany(
+            mappedBy = "order",
+            fetch = FetchType.LAZY,
+            cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "order_bowl",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "bowl_id"))
     private List<Bowl> bowls;
 
     @Column(name = "Mennyiség")
@@ -42,4 +42,10 @@ public class Order {
 
     @Column(name = "Teljes ár")
     private Integer price; //ennek a Bowl x unit -ból kellene jönnie, de lehetséges módosítani
+
+    @PrePersist
+    @PreUpdate
+    public void calculateTotalPrice() {
+        this.price = this.bowls.stream().mapToInt(Bowl::getPrice).sum();
+    }
 }

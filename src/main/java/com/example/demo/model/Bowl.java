@@ -16,7 +16,8 @@ public class Bowl {
     @Column(name = "Tál_típusa")
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+    @ManyToMany(
+            fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
@@ -24,6 +25,10 @@ public class Bowl {
     joinColumns = @JoinColumn(name = "bowl_id"),
     inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private List<Ingredient> ingredients;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @Column(name = "Mennyiség")
     private Integer quantity;
