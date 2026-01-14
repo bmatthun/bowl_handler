@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bowls")
+@RequestMapping("/api/bowls")
 public class BowlController {
     @GetMapping
     public List<Bowl> getAllBowl() {
