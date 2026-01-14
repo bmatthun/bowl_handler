@@ -38,4 +38,12 @@ public class ThymeLeafController {
         bowlRepository.save(bowl);
         return "redirect:/bowls";
     }
+
+    @GetMapping("/bowls/delete/{id}")
+    public String deleteBowl(@PathVariable Long id) {
+        Bowl bowl = bowlRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid bowl id: " + id));
+        bowlRepository.delete(bowl);
+        return "redirect:/bowls";
+    }
 }
